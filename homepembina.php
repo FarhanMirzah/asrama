@@ -52,6 +52,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="homepembina.php">Home</a></li>
+          <li><a class="nav-link scrollto" href="register.php">Register</a></li>
           <li><a class="nav-link scrollto" href="logout.php">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
