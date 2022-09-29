@@ -79,7 +79,11 @@
       <p class="section-description"></p>
     </div>
     <div class="container px-3 px-lg-5">
-      <a href="tambahabsensimalam.php" class='btn btn-xs btn-primary'>Isi Absensi</a><br><br>
+      <tr>
+        <td><a href="tambahabsensimalam.php" class='btn btn-xs btn-primary'>Isi Absensi</a></td>
+        <td><a onClick="window.print()" class='btn btn-xs btn-success'>Cetak</a></td>
+        <br><br>
+      </tr>
       <div class="card mt-0">
       <div class="card-header bg-dark text-white">
         List Daftar Absensi Malam
