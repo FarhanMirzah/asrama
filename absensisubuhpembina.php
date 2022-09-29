@@ -88,7 +88,8 @@
       <br>
       <tr>
         <td><button type="submit" class="btn btn-primary" name="submit">Pilih Tanggal</button></td>
-        <td><a href="cetakabsensisubuh.php?tanggalcetak=<?php echo $tanggalcetak ?>" class='btn btn-xs btn-success'>Cetak</a></td>
+        <td><a href="cetakabsensisubuh.php?tanggalcetak=<?php echo $tanggalcetak ?>" class='btn btn-xs btn-success'>Cetak Tanggal</a></td>
+        <td><a onClick="window.print()" class='btn btn-xs btn-secondary'>Cetak Semua</a></td>
       </tr>
       </form>
       <div class="card mt-0">
