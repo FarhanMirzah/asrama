@@ -1,25 +1,75 @@
 <?php
-// Referensi: https://www.studentstutorial.com/php/forgot-password
+  // Referensi: https://www.studentstutorial.com/php/forgot-password
+  // https://www.youtube.com/watch?v=YqWT0qp8O_0
+
+  // Import PHPMailer classes into the global namespace
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\SMTP;
+  use PHPMailer\PHPMailer\Exception;
+
+  // Include library files
+  require 'PHPMailer/Exception.php';
+  require 'PHPMailer/PHPMailer.php';
+  require 'PHPMailer/SMTP.php';
+
+  // Create an instance; Pass `true` to enable exceptions 
+  $mail = new PHPMailer; 
+  
+  // Server settings 
+  //$mail->SMTPDebug = SMTP::DEBUG_SERVER;    //Enable verbose debug output 
+  $mail->isSMTP();                            // Set mailer to use SMTP 
+  $mail->Mailer = "smtp"; 
+  $mail->Host = 'smtp.gmail.com';           // Specify main and backup SMTP servers 
+  $mail->SMTPAuth = true;                     // Enable SMTP authentication 
+  $mail->Username = 'ppsi2022b3@gmail.com';       // SMTP username 
+  $mail->Password = 'jmjybppwmfotwnav';         // SMTP password 
+  $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted 
+  $mail->Port = 587;                          // TCP port to connect to 
+  
+  // Sender info 
+  $mail->setFrom('ppsi2022b3@gmail.com', 'Asrama Unand'); 
+  //$mail->addReplyTo('reply@example.com', 'SenderName'); 
+
   if(isset($_POST['submit'])){
     $nim = $_POST['nim'];
 
     include('koneksi.php');
-    $result = mysqli_query($mysqli, 'SELECT * FROM mahasiswa WHERE nim="'.$_POST['nim'].'"');
+    $result = mysqli_query($mysqli, 'SELECT * FROM mahasiswa WHERE nim="'.$nim.'"');
     $row = mysqli_fetch_assoc($result);
-	$fetch_nim=$row['nim'];
-	$email=$row['email'];
-	$pass=$row['pass'];
-	if($nim==$fetch_nim) {
-				$to = $email;
-                $subject = "Password";
-                $txt = "Your password is : $pass.";
-                $headers = "From: password@studentstutorial.com" . "\r\n" .
-                "CC: somebodyelse@example.com";
-                mail($to,$subject,$txt,$headers);
-			}
-				else{
-					echo 'invalid nim';
-				}
+    $fetch_nim=$row['nim'];
+    $email=$row['email'];
+    $pass=$row['pass'];
+    if($nim==$fetch_nim) {
+      // Add a recipient 
+      $mail->addAddress($email); 
+      
+      //$mail->addCC('cc@example.com'); 
+      //$mail->addBCC('bcc@example.com'); 
+      
+      // Set email format to HTML 
+      $mail->isHTML(true); 
+      
+      // Mail subject 
+      $mail->Subject = 'Password akun mahasiswa Asrama Unand'; 
+      
+      // Mail body content
+      $bodyContent = "Password akun mahasiswa Asrama Unand anda dengan NIM $fetch_nim adalah : $pass";
+      $mail->Body    = $bodyContent; 
+
+      if($mail->send()){
+        echo "<script> 
+                alert('Email yang berisi password akun mahasiswa anda telah dikirim ke $email'); 
+                document.location='index.php';
+              </script>";
+        $mail->clearAddresses();
+      }
+    }   
+    else { 
+      echo "<script> 
+            alert('Email tidak berhasil dikirim karena NIM tidak ada'); 
+            document.location='lupapassword.php';
+          </script>";
+    }
   }
 
 ?>
@@ -31,7 +81,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Register Mahasiswa Asrama</title>
+  <title>Lupa Password Mahasiswa Asrama</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -82,6 +132,7 @@
 
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Lupa Password?</h1>
       <h2>Masukkan NIM anda</h2>
       <div class="col-lg-3 col-md-5">
         <div class="form">

@@ -1,22 +1,75 @@
 <?php
+  // Referensi: https://www.studentstutorial.com/php/forgot-password
+  // https://www.youtube.com/watch?v=YqWT0qp8O_0
+
+  // Import PHPMailer classes into the global namespace
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\SMTP;
+  use PHPMailer\PHPMailer\Exception;
+
+  // Include library files
+  require 'PHPMailer/Exception.php';
+  require 'PHPMailer/PHPMailer.php';
+  require 'PHPMailer/SMTP.php';
+
+  // Create an instance; Pass `true` to enable exceptions 
+  $mail = new PHPMailer; 
+  
+  // Server settings 
+  //$mail->SMTPDebug = SMTP::DEBUG_SERVER;    //Enable verbose debug output 
+  $mail->isSMTP();                            // Set mailer to use SMTP 
+  $mail->Mailer = "smtp"; 
+  $mail->Host = 'smtp.gmail.com';           // Specify main and backup SMTP servers 
+  $mail->SMTPAuth = true;                     // Enable SMTP authentication 
+  $mail->Username = 'ppsi2022b3@gmail.com';       // SMTP username 
+  $mail->Password = 'jmjybppwmfotwnav';         // SMTP password 
+  $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted 
+  $mail->Port = 587;                          // TCP port to connect to 
+  
+  // Sender info 
+  $mail->setFrom('ppsi2022b3@gmail.com', 'Asrama Unand'); 
+  //$mail->addReplyTo('reply@example.com', 'SenderName'); 
 
   if(isset($_POST['submit'])){
     $idpembina = $_POST['idpembina'];
-    $password = $_POST['password'];
 
     include('koneksi.php');
+    $result = mysqli_query($mysqli, 'SELECT * FROM pembina WHERE idpembina="'.$idpembina.'"');
+    $row = mysqli_fetch_assoc($result);
+    $fetch_idpembina=$row['idpembina'];
+    $email=$row['email'];
+    $password=$row['password'];
+    if($idpembina==$fetch_idpembina) {
+      // Add a recipient 
+      $mail->addAddress($email); 
+      
+      //$mail->addCC('cc@example.com'); 
+      //$mail->addBCC('bcc@example.com'); 
+      
+      // Set email format to HTML 
+      $mail->isHTML(true); 
+      
+      // Mail subject 
+      $mail->Subject = 'Password akun pembina Asrama Unand'; 
+      
+      // Mail body content
+      $bodyContent = "Password akun pembina Asrama Unand anda dengan ID $fetch_idpembina adalah : $password";
+      $mail->Body    = $bodyContent; 
 
-    $result = mysqli_query($mysqli, 'SELECT * FROM pembina WHERE idpembina="'.$idpembina.'" AND password="'.$password.'"');
-
-    if($result){
-      session_start();
-      $_SESSION['idpembina'] = $idpembina;  
+      if($mail->send()){
+        echo "<script> 
+                alert('Email yang berisi password akun pembina anda telah dikirim ke $email'); 
+                document.location='loginpembina.php';
+              </script>";
+        $mail->clearAddresses();
+      }
+    }   
+    else { 
       echo "<script> 
-              alert('Anda Berhasil Login!'); 
-              document.location='homepembina.php';
-            </script>";
+            alert('Email tidak berhasil dikirim karena ID Pembina tidak ada'); 
+            document.location='lupapasswordpembina.php';
+          </script>";
     }
-
   }
 
 ?>
@@ -28,7 +81,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Absensi Asrama UNAND</title>
+  <title>Lupa Password Pembina Asrama</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -63,13 +116,13 @@
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
       <div id="logo">
-        <h1><a href="">Absensi Asrama UNAND</a></h1>
+        <h1><a href="index.php">Absensi Asrama UNAND</a></h1>
       </div>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto" href="index.php">Home</a></li>
-          <li><a class="nav-link scrollto active" href="loginpembina.php">Pembina</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="loginpembina.php">Pembina</a></li>
+          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -79,54 +132,17 @@
 
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Selamat Datang</h1>
-      <h2>silahkan login terlebih dahulu</h2>
+      <h1>Lupa Password?</h1>
+      <h2>Masukkan ID Pembina anda</h2>
       <div class="col-lg-3 col-md-5">
-        <div class="form-group">
-          <form action="loginpembina.php" method="post">
+        <div class="form">
+          <form action="" method="post">
             <div class="form-group">
               <input type="text" name="idpembina" class="form-control" id="idpembina" placeholder="ID Pembina" required>
             </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-            </div>
-            <button class="btn-get-started" type="submit" name="submit">Sign In</button>
+            <button class="btn-get-started" type="submit" name="submit">Submit</button>
           </form>
-          <td><a href="lupapasswordpembina.php">Lupa Password?</a></td>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container" data-aos="fade-up">
-      <div class="row about-container">
-        <div class="col-lg-6 content order-lg-1 order-2">
-          <h2 class="title">About Us</h2>
-          <p>
-            Absensi mahasiswa asrama UNAND merupakan aplikasi berbasis website yang bertujuan agar memudahkan mahasiswa asrama dan pembina dalam mengelola proses absensi.
-            Berikut merupakan beberapa fitur yang disediakan :
-          </p>
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Absensi Subuh</a></h4>
-            <p class="description">Absensi subuh dilakukan ketika selesai shalat subuh berjamaah dengan mengisi form absensi</p>
-            <p class="description"></p>
-          </div>
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Absensi Malam</a></h4>
-            <p class="description">Absensi malam dilakukan ketika selesai shalat isya berjamaah dengan mengisi form absensi</p>
-            <p class="description"></p>
-          </div>
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Izin Asrama</a></h4>
-            <p class="description">Izin asrama dilakukan ketika terdapat kondisi tertentu yang menyebabkan tidak dapat berada di lingkungan asrama</p>
-            <p class="description"></p>
-          </div>
-        </div>
-        <div class="col-lg-6 background order-lg-2 order-1" data-aos="fade-left" data-aos-delay="100"></div>
       </div>
     </div>
   </section>
@@ -141,7 +157,7 @@
       <div class="copyright">
         &copy; Copyright <strong>Asrama UNAND</strong>. All Rights Reserved
       </div>
-      <div class="credits">
+      <div class="credits">   
       </div>
     </div>
   </footer>
