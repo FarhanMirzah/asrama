@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 12:11 PM
+-- Generation Time: Nov 14, 2022 at 03:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -104,10 +104,10 @@ INSERT INTO `izinasrama` (`id`, `nim`, `tanggal`, `keterangan`, `statuspersetuju
 CREATE TABLE `mahasiswa` (
   `nim` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `jurusan` varchar(25) NOT NULL,
+  `jurusan` varchar(50) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `notelpon` varchar(15) DEFAULT NULL,
-  `pass` varchar(16) NOT NULL
+  `pass` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -129,10 +129,10 @@ INSERT INTO `mahasiswa` (`nim`, `nama`, `jurusan`, `email`, `notelpon`, `pass`) 
 
 CREATE TABLE `pembina` (
   `idpembina` varchar(25) NOT NULL,
-  `email` varchar(25) NOT NULL,
-  `nama` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `notelpon` varchar(15) NOT NULL,
-  `password` varchar(16) NOT NULL
+  `password` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
