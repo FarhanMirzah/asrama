@@ -4,10 +4,11 @@
     $nim = $_POST['nim'];
     $nama = $_POST['nama'];
     $jurusan = $_POST['jurusan'];
+    $email = $_POST['email'];
     $pass = $_POST['pass'];
 
     include('koneksi.php');
-    $result = mysqli_query($mysqli, "INSERT INTO mahasiswa(nim, nama, jurusan, pass) VALUES ('$nim','$nama','$jurusan','$pass')");
+    $result = mysqli_query($mysqli, "INSERT INTO mahasiswa(nim, nama, jurusan, email, pass) VALUES ('$nim','$nama','$jurusan','$email','$pass')");
 
     if($result){
       echo "<script>
@@ -85,7 +86,7 @@
 
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-      <h2>silahkan isikan data di bawah ini</h2>
+      <h2>Silahkan isikan data di bawah ini</h2>
       <div class="col-lg-3 col-md-5">
         <div class="form">
           <form action="register.php" method="post">
@@ -97,6 +98,9 @@
             </div>
             <div class="form-group mt-3">
               <input type="text" class="form-control" name="jurusan" id="jurusan" placeholder="Jurusan" required>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
             </div>
             <div class="form-group mt-3">
               <input type="password" class="form-control" name="pass" id="pass" placeholder="Password" required>
