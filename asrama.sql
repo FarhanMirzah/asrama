@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 03:27 PM
+-- Generation Time: Nov 14, 2022 at 03:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -140,7 +140,8 @@ CREATE TABLE `pembina` (
 --
 
 INSERT INTO `pembina` (`idpembina`, `email`, `nama`, `notelpon`, `password`) VALUES
-('pembina', 'dimas123@gmail.com', 'Dimas Syahputra', '085201881287', '12345');
+('pembina', 'dimas123@gmail.com', 'Dimas Syahputra', '085201881287', '12345'),
+('pembinafarhan', 'farhan.anandamirzah@gmail.com', 'Farhan Pembina', '', '12345');
 
 --
 -- Indexes for dumped tables

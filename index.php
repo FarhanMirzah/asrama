@@ -86,7 +86,7 @@
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
       <h1>Selamat Datang</h1>
-      <h2>silahkan login terlebih dahulu</h2>
+      <h2>Login sebagai mahasiswa</h2>
       <div class="col-lg-3 col-md-5">
         <div class="form-group">
           <form action="index.php" method="post">
