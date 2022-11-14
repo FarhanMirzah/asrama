@@ -1,27 +1,25 @@
 <?php
-
+// Referensi: https://www.studentstutorial.com/php/forgot-password
   if(isset($_POST['submit'])){
     $nim = $_POST['nim'];
-    $pass = $_POST['pass'];
 
     include('koneksi.php');
-
-    $result = mysqli_query($mysqli, 'SELECT * FROM mahasiswa WHERE nim="'.$nim.'" AND pass="'.$pass.'"');
-
-    if($result->num_rows>0){
-      session_start();
-      $_SESSION['nim'] = $nim;  
-      echo "<script> 
-              alert('Anda Berhasil Login!'); 
-              document.location='home.php';
-            </script>";
-    }
-    else{
-      echo "<script> 
-              alert('Anda Tidak Berhasil Login!'); 
-              document.location='index.php';
-            </script>";
-    }
+    $result = mysqli_query($mysqli, 'SELECT * FROM mahasiswa WHERE nim="'.$_POST['nim'].'"');
+    $row = mysqli_fetch_assoc($result);
+	$fetch_nim=$row['nim'];
+	$email=$row['email'];
+	$pass=$row['pass'];
+	if($nim==$fetch_nim) {
+				$to = $email;
+                $subject = "Password";
+                $txt = "Your password is : $pass.";
+                $headers = "From: password@studentstutorial.com" . "\r\n" .
+                "CC: somebodyelse@example.com";
+                mail($to,$subject,$txt,$headers);
+			}
+				else{
+					echo 'invalid nim';
+				}
   }
 
 ?>
@@ -33,7 +31,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Absensi Asrama UNAND</title>
+  <title>Register Mahasiswa Asrama</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -68,14 +66,13 @@
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
       <div id="logo">
-        <h1><a href="">Absensi Asrama UNAND</a></h1>
+        <h1><a href="index.php">Absensi Asrama UNAND</a></h1>
       </div>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          
+          <li><a class="nav-link scrollto" href="index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="loginpembina.php">Pembina</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -85,54 +82,16 @@
 
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Selamat Datang</h1>
-      <h2>silahkan login terlebih dahulu</h2>
+      <h2>Masukkan NIM anda</h2>
       <div class="col-lg-3 col-md-5">
-        <div class="form-group">
-          <form action="index.php" method="post">
+        <div class="form">
+          <form action="" method="post">
             <div class="form-group">
               <input type="text" name="nim" class="form-control" id="nim" placeholder="NIM" required>
             </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="pass" id="pass" placeholder="Password" required>
-            </div>
-            <button class="btn-get-started" type="submit" name="submit">Sign In</button>
+            <button class="btn-get-started" type="submit" name="submit">Submit</button>
           </form>
-          <td><a href="lupapassword.php">Lupa Password?</a></td>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container" data-aos="fade-up">
-      <div class="row about-container">
-        <div class="col-lg-6 content order-lg-1 order-2">
-          <h2 class="title">About Us</h2>
-          <p>
-            Absensi mahasiswa asrama UNAND merupakan aplikasi berbasis website yang bertujuan agar memudahkan mahasiswa asrama dan pembina dalam mengelola proses absensi.
-            Berikut merupakan beberapa fitur yang disediakan :
-          </p>
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Absensi Subuh</a></h4>
-            <p class="description">Absensi subuh dilakukan ketika selesai shalat subuh berjamaah dengan mengisi form absensi</p>
-            <p class="description"></p>
-          </div>
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Absensi Malam</a></h4>
-            <p class="description">Absensi malam dilakukan ketika selesai shalat isya berjamaah dengan mengisi form absensi</p>
-            <p class="description"></p>
-          </div>
-          <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Izin Asrama</a></h4>
-            <p class="description">Izin asrama dilakukan ketika terdapat kondisi tertentu yang menyebabkan tidak dapat berada di lingkungan asrama</p>
-            <p class="description"></p>
-          </div>
-        </div>
-        <div class="col-lg-6 background order-lg-2 order-1" data-aos="fade-left" data-aos-delay="100"></div>
       </div>
     </div>
   </section>
@@ -147,7 +106,7 @@
       <div class="copyright">
         &copy; Copyright <strong>Asrama UNAND</strong>. All Rights Reserved
       </div>
-      <div class="credits">
+      <div class="credits">   
       </div>
     </div>
   </footer>

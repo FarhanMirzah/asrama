@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2022 at 03:58 AM
+-- Generation Time: Nov 14, 2022 at 12:11 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -103,9 +103,9 @@ INSERT INTO `izinasrama` (`id`, `nim`, `tanggal`, `keterangan`, `statuspersetuju
 
 CREATE TABLE `mahasiswa` (
   `nim` varchar(10) NOT NULL,
-  `nama` varchar(25) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `jurusan` varchar(25) NOT NULL,
-  `email` varchar(25) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `notelpon` varchar(15) DEFAULT NULL,
   `pass` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -118,7 +118,8 @@ INSERT INTO `mahasiswa` (`nim`, `nama`, `jurusan`, `email`, `notelpon`, `pass`) 
 ('1911521020', 'Farhan', 'Sistem Informasi', 'han123@gmail', '089552113919', '12345'),
 ('1911522018', 'Ufa Aurora Guciano', 'Sistem Informasi', 'ufa123@gmail', '084688750889', '12345'),
 ('1911522020', 'Zakiah', 'Sistem Informasi', 'zakiah123@gmail', '083618621780', '12345'),
-('1911522028', 'Ranti Agustin', 'Sistem Informasi', 'ranti123@gmail', '086834539177 ', '12345');
+('1911522028', 'Ranti Agustin', 'Sistem Informasi', 'ranti123@gmail', '086834539177 ', '12345'),
+('2011522022', 'Muhammad Farhan Ananda Mirzah', 'Sistem Informasi', 'farhan.anandamirzah@gmail.com', NULL, '12345');
 
 -- --------------------------------------------------------
 
