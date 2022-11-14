@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 03:37 PM
+-- Generation Time: Nov 14, 2022 at 04:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -119,7 +119,7 @@ INSERT INTO `mahasiswa` (`nim`, `nama`, `jurusan`, `email`, `notelpon`, `pass`) 
 ('1911522018', 'Ufa Aurora Guciano', 'Sistem Informasi', 'ufa123@gmail', '084688750889', '12345'),
 ('1911522020', 'Zakiah', 'Sistem Informasi', 'zakiah123@gmail', '083618621780', '12345'),
 ('1911522028', 'Ranti Agustin', 'Sistem Informasi', 'ranti123@gmail', '086834539177 ', '12345'),
-('2011522022', 'Muhammad Farhan Ananda Mirzah', 'Sistem Informasi', 'farhan.anandamirzah@gmail.com', NULL, '12345');
+('2011522022', 'Muhammad Farhan Ananda Mirzah', 'Sistem Informasi', 'farhan.anandamirzah@gmail.com', '', '123');
 
 -- --------------------------------------------------------
 
@@ -141,7 +141,7 @@ CREATE TABLE `pembina` (
 
 INSERT INTO `pembina` (`idpembina`, `email`, `nama`, `notelpon`, `password`) VALUES
 ('pembina', 'dimas123@gmail.com', 'Dimas Syahputra', '085201881287', '12345'),
-('pembinafarhan', 'farhan.anandamirzah@gmail.com', 'Farhan Pembina', '', '12345');
+('pembinafarhan', 'farhan.anandamirzah@gmail.com', 'Farhan Pembina', '', '123');
 
 --
 -- Indexes for dumped tables
