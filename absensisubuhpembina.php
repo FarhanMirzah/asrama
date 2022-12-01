@@ -44,6 +44,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- CSS for Printing -->
+  <link rel="stylesheet" type="text/css" href="assets/css/print.css" media="print" />
+
   <!-- =======================================================
   * Template Name: Regna - v4.7.0
   * Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
@@ -84,12 +87,12 @@
     </div>
     <div class="container px-3 px-lg-5">
       <form method="post" action="absensisubuhpembina.php">
-      <input type="date" name="tanggalcetak" class="form-control" id="tanggalcetak" placeholder="Pilih Tanggal" required>
+      <input type="date" name="tanggalcetak" class="form-control noPrint" id="tanggalcetak" placeholder="Pilih Tanggal" required>
       <br>
       <tr>
-        <td><button type="submit" class="btn btn-primary" name="submit">Pilih Tanggal</button></td>
-        <td><a href="cetakabsensisubuh.php?tanggalcetak=<?php echo $tanggalcetak ?>" class='btn btn-xs btn-success'>Cetak Tanggal</a></td>
-        <td><a onClick="window.print()" class='btn btn-xs btn-secondary'>Cetak Semua</a></td>
+        <td><button type="submit" class="btn btn-primary noPrint" name="submit">Pilih Tanggal</button></td>
+        <td><a href="cetakabsensisubuh.php?tanggalcetak=<?php echo $tanggalcetak ?>" class='btn btn-xs btn-success noPrint'>Cetak Tanggal</a></td>
+        <td><a onClick="window.print()" class='btn btn-xs btn-secondary noPrint'>Cetak Semua</a></td>
       </tr>
       </form>
       <div class="card mt-0">

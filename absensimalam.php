@@ -40,6 +40,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- CSS for Printing -->
+  <link rel="stylesheet" type="text/css" href="assets/css/print.css" media="print" />
+
   <!-- =======================================================
   * Template Name: Regna - v4.7.0
   * Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
@@ -80,8 +83,8 @@
     </div>
     <div class="container px-3 px-lg-5">
       <tr>
-        <td><a href="tambahabsensimalam.php" class='btn btn-xs btn-primary'>Isi Absensi</a></td>
-        <td><a onClick="window.print()" class='btn btn-xs btn-success'>Cetak</a></td>
+        <td><a href="tambahabsensimalam.php" class='btn btn-xs btn-primary noPrint'>Isi Absensi</a></td>
+        <td><a onClick="window.print()" class='btn btn-xs btn-success noPrint'>Cetak</a></td>
         <br><br>
       </tr>
       <div class="card mt-0">
