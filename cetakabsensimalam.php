@@ -83,7 +83,7 @@
     <div class="container px-3 px-lg-5">
       <div class="card mt-0">
       <div class="card-header bg-dark text-white">
-        List Daftar Absensi Malam Tanggal <?php echo $tanggalcetak ?>
+        List Daftar Absensi Malam Tanggal <?php echo date('d-m-Y', strtotime($tanggalcetak)) ?>
       </div>
       <div class="card-body">  
         <table class="table table-bordered table-sm table-striped align-center">
@@ -100,9 +100,9 @@
             while($data = mysqli_fetch_array($result)){ ?>
             <tr>
               <td class="text-center"><?php echo $no?></td>
-              <td class="text-center"><?php echo $data['tanggal']?></td>
+              <td class="text-center"><?php echo date('d-m-Y', strtotime($data['tanggal']))?></td>
               <td class="text-center"><?php echo $data['nim']?></td>
-              <td class="text-center"><?php echo $data['waktu']?></td>
+              <td class="text-center"><?php echo date('H:i A', strtotime($data['waktu']))?></td>
               <td class="text-center"><?php echo $data['statuskehadiran']?></td>
             </tr>
 

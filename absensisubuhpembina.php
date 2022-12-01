@@ -112,10 +112,10 @@
             while($data = mysqli_fetch_array($result)){ ?>
             <tr>
               <td class="text-center"><?php echo $no?></td>
-              <td class="text-center"><?php echo $data['tanggal']?></td>
+              <td class="text-center"><?php echo date('d-m-Y', strtotime($data['tanggal']))?></td>
               <td class="text-center"><?php echo $data['nim']?></td>
               <td class="text-center"><?php echo $data['nama']?></td>
-              <td class="text-center"><?php echo $data['waktu']?></td>
+              <td class="text-center"><?php echo date('H:i A', strtotime($data['waktu']))?></td>
               <td class="text-center"><?php echo $data['statuskehadiran']?></td>
             </tr>
 
