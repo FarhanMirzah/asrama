@@ -4,7 +4,7 @@
   include('koneksi.php');
 
   $result = mysqli_query($mysqli, 'SELECT absensimalam.tanggal, absensimalam.waktu, absensimalam.nim, absensimalam.statuskehadiran, 
-  mahasiswa.nim, mahasiswa.nama FROM absensimalam, mahasiswa WHERE absensimalam.nim=mahasiswa.nim ORDER BY tanggal');
+  mahasiswa.nim, mahasiswa.nama FROM absensimalam, mahasiswa WHERE absensimalam.nim=mahasiswa.nim ORDER BY tanggal, waktu');
   
   if(!$result){
     echo "<script> 
