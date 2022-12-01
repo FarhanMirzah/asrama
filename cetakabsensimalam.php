@@ -5,8 +5,8 @@
 
     $tanggalcetak = $_REQUEST['tanggalcetak'];
 
-    $result = mysqli_query($mysqli, 'SELECT * FROM absensimalam WHERE tanggal="'.$tanggalcetak.'" ORDER BY nim');
-    
+    $result = mysqli_query($mysqli, 'SELECT * FROM absensimalam, mahasiswa WHERE absensimalam.nim=mahasiswa.nim AND absensimalam.tanggal="'.$tanggalcetak.'" ORDER BY absensimalam.nim');
+
     if(!$result){
       echo "<script>
               var info = 'Gagal Menampilkan Data!';  
@@ -91,6 +91,7 @@
             <th class="text-center">No</th> 
             <th class="text-center">Tanggal</th>
             <th class="text-center">NIM</th>
+            <th class="text-center">Nama</th>
             <th class="text-center">Waktu</th>
             <th class="text-center">Status Kehadiran</th>
           </tr>
@@ -101,6 +102,7 @@
             <tr>
               <td class="text-center"><?php echo $no?></td>
               <td class="text-center"><?php echo date('d-m-Y', strtotime($data['tanggal']))?></td>
+              <td class="text-center"><?php echo $data['nim']?></td>
               <td class="text-center"><?php echo $data['nim']?></td>
               <td class="text-center"><?php echo date('H:i A', strtotime($data['waktu']))?></td>
               <td class="text-center"><?php echo $data['statuskehadiran']?></td>
