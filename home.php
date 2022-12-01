@@ -75,7 +75,7 @@
         <div class="col-lg-4 col-md-6" data-aos="zoom-in">
           <div class="box">
             <div class="icon"><a href="absensimalam.php?nim=<?php echo $nim ?>"><i class="bi bi-card-checklist"></i></a></div>
-            <h4 class="title"><a href="absensisubuh.php?nim=<?php echo $nim ?>">Absensi Malam</a></h4>
+            <h4 class="title"><a href="absensimalam.php?nim=<?php echo $nim ?>">Absensi Malam</a></h4>
             <p class="description">Absensi malam dilakukan ketika selesai shalat isya berjamaah dengan melengkapi form</p>
           </div>
         </div>
