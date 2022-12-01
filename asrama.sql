@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 04:18 PM
+-- Generation Time: Dec 01, 2022 at 05:27 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -40,12 +40,10 @@ CREATE TABLE `absensimalam` (
 --
 
 INSERT INTO `absensimalam` (`idabsensi`, `tanggal`, `waktu`, `nim`, `statuskehadiran`) VALUES
-(1, '2021-12-13', '20:30:00', '1911522020', 'hadir'),
-(2, '2021-12-14', '20:48:00', '1911522020', 'hadir'),
-(3, '2021-12-15', '20:22:00', '1911522020', 'hadir'),
-(4, '2021-12-13', '20:44:00', '1911522028', 'hadir'),
-(5, '2021-12-14', '20:46:00', '1911522028', 'hadir'),
-(6, '2021-12-15', '20:38:00', '1911522028', 'hadir');
+(1, '2022-12-01', '20:31:00', '2011521008', 'hadir'),
+(2, '2022-12-01', '20:39:00', '2011522020', 'hadir'),
+(3, '2022-12-02', '20:45:00', '2011521008', 'izin'),
+(4, '2022-12-02', '20:53:00', '2011522020', 'sakit');
 
 -- --------------------------------------------------------
 
@@ -66,12 +64,10 @@ CREATE TABLE `absensisubuh` (
 --
 
 INSERT INTO `absensisubuh` (`idabsensi`, `tanggal`, `waktu`, `nim`, `statuskehadiran`) VALUES
-(1, '2021-12-13', '05:47:00', '1911522020', 'hadir'),
-(2, '2021-12-14', '05:53:00', '1911522020', 'hadir'),
-(3, '2021-12-15', '05:30:00', '1911522020', 'sakit'),
-(4, '2021-12-13', '05:46:00', '1911522028', 'hadir'),
-(5, '2021-12-14', '05:51:00', '1911522028', 'hadir'),
-(6, '2021-12-15', '05:41:00', '1911522028', 'hadir');
+(1, '2022-12-01', '05:33:00', '2011521008', 'hadir'),
+(2, '2022-12-01', '05:39:00', '2011522020', 'hadir'),
+(3, '2022-12-02', '05:36:00', '2011521008', 'hadir'),
+(4, '2022-12-02', '05:44:00', '2011522020', 'hadir');
 
 -- --------------------------------------------------------
 
@@ -92,8 +88,8 @@ CREATE TABLE `izinasrama` (
 --
 
 INSERT INTO `izinasrama` (`id`, `nim`, `tanggal`, `keterangan`, `statuspersetujuan`) VALUES
-(3, '1911522020', '2021-12-17', 'Pulang kampung', 'Belum Disetujui'),
-(5, '1911522028', '2021-12-14', 'Pulang Kampung', 'Belum Disetujui');
+(1, '2011521008', '2022-12-02', 'Pulang Kampung', 'Belum Disetujui'),
+(2, '2011522020', '2022-12-02', 'Demam', 'Belum Disetujui');
 
 -- --------------------------------------------------------
 
@@ -115,11 +111,9 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`nim`, `nama`, `jurusan`, `email`, `notelpon`, `pass`) VALUES
-('1911521020', 'Farhan', 'Sistem Informasi', 'han123@gmail', '089552113919', '12345'),
-('1911522018', 'Ufa Aurora Guciano', 'Sistem Informasi', 'ufa123@gmail', '084688750889', '12345'),
-('1911522020', 'Zakiah', 'Sistem Informasi', 'zakiah123@gmail', '083618621780', '12345'),
-('1911522028', 'Ranti Agustin', 'Sistem Informasi', 'ranti123@gmail', '086834539177 ', '12345'),
-('2011522022', 'Muhammad Farhan Ananda Mirzah', 'Sistem Informasi', 'farhan.anandamirzah@gmail.com', '', '123');
+('2011521008', 'Desrilia Putri Utami', 'Sistem Informasi', 'desrilia008@gmail', '081364090730', '008'),
+('2011522020', 'Muhammad Zaim Milzam', 'Sistem Informasi', 'zaim020@gmail', '081275143525', '020'),
+('2011522022', 'Muhammad Farhan Ananda Mirzah', 'Sistem Informasi', 'farhan.anandamirzah@gmail.com', '082287221780', '022');
 
 -- --------------------------------------------------------
 
@@ -140,8 +134,7 @@ CREATE TABLE `pembina` (
 --
 
 INSERT INTO `pembina` (`idpembina`, `email`, `nama`, `notelpon`, `password`) VALUES
-('pembina', 'dimas123@gmail.com', 'Dimas Syahputra', '085201881287', '12345'),
-('pembinafarhan', 'farhan.anandamirzah@gmail.com', 'Farhan Pembina', '', '123');
+('pembina', 'farhan.anandamirzah@gmail.com', 'Farhan (Pembina)', '082287221780', '123');
 
 --
 -- Indexes for dumped tables
@@ -188,19 +181,19 @@ ALTER TABLE `pembina`
 -- AUTO_INCREMENT for table `absensimalam`
 --
 ALTER TABLE `absensimalam`
-  MODIFY `idabsensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idabsensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `absensisubuh`
 --
 ALTER TABLE `absensisubuh`
-  MODIFY `idabsensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idabsensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `izinasrama`
 --
 ALTER TABLE `izinasrama`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
