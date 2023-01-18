@@ -1,4 +1,6 @@
-NIM, ID Pembina dan Password dapat dilihat di database asrama (tabel mahasiswa dan pembina)
+Di phpmyadmin, buat database dengan nama asrama, lalu import file asrama.sql
+
+NIM, ID Pembina dan Password untuk login dapat dilihat di database asrama (tabel mahasiswa dan pembina)
 
 NIM dan Password mahasiswa:
 2011521008 008
